@@ -67,7 +67,15 @@ HashTable.prototype.exists = function(key) {
 }
 
 HashTable.prototype.get = function(key) {
+  var index = this.hash(key);
 
+  while(this.data[index] != null) {
+    if(this.data[index].key == key) {
+      return this.data[index].value;
+    }
+  }
+
+  return null;
 }
 
 HashTable.prototype.remove = function(key) {
