@@ -9,16 +9,36 @@ function HashTable() {
 
   function grow() {
     this.capacity *= 2;
+    this.size = 0;
     this.newTable = [];
     for (var i = 0; i < this.data.length; i++) {
       if (this.data[i].flag == 0) {
-        
+        var index = this.hash(this.data[i].key);
+        while(newTable[index] != null) {
+          index = (index + 1) % this.capacity;
+        }
+        newTable[index] = this.data[i];
+        this.size++;
       }
     }
+    this.data = newTable;
   }
 
   function shrink() {
-
+    this.capacity /= 2;
+    this.size = 0;
+    this.newTable = [];
+    for(var i = 0; i < this.data.length; i++) {
+      if (this.data[i.flag] == 0) {
+        var index = this.hash(this.data[i].key);
+        while(newTable[index] != null) {
+          index = (index + 1) % this.capacity;
+        }
+        newTable[index] = this.data[i];
+        this.size++;
+      }
+    }
+    this.data = newTable;
   }
 }
 
